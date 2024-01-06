@@ -1,26 +1,33 @@
 package ru.dolgosheev.homeworkdaohibernate.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.*;
-
-import java.io.Serializable;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 
-@Data
-@Builder
+//@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "persons")
 @Entity
-public class Person implements Serializable {
+@Table(name = "persons")
+public class Person {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Column(nullable = false)
     private String name;
-    @Id
+
+    @Column(nullable = false)
     private String surname;
-    @Id
+
+    @Column(nullable = false)
     private int age;
-    private int phone_number;
-    private String city_of_living;
+
+    @Column(columnDefinition = "varchar(16) default 'Номер не указан'")
+    private String phoneNumber;
+
+    @Column(nullable = false)
+    private String cityOfLiving;
 }
